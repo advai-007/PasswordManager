@@ -1,6 +1,6 @@
 import sqlite3
 from argon2 import PasswordHasher
-
+from crypto_utils import encrypt_password,decrypt_password
 DB_NAME="pwd_manager.db"
 ph=PasswordHasher()
 
@@ -62,17 +62,17 @@ def get_user_passwords(user_id):
     SELECT id,website_name,username,password FROM passwords 
     WHERE user_id=?""",(user_id,))
     passwords=cursor.fetchall()
-    print(passwords)
     conn.close()
-    return [{"id": r[0], "website": r[1], "username": r[2], "password": r[3]} for r in passwords]
+    return [{"id": r[0], "website": r[1], "username": r[2], "password": decrypt_password(r[3])} for r in passwords]
 
 def add_password_entry(user_id,website,username,password):
     try:
+        encrypted_pwd=encrypt_password(password)
         conn=sqlite3.connect(DB_NAME)
         cursor=conn.cursor()
         cursor.execute("""
         INSERT INTO passwords (user_id,website_name,username,password) VALUES(?,?,?,?)
-        """,(user_id,website,username,password))
+        """,(user_id,website,username,encrypted_pwd))
         conn.commit()
         conn.close()
         return True
