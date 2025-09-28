@@ -1,0 +1,17 @@
+# Python bytecode
+*.pyc
+__pycache__/
+
+# Virtual Environment
+venv/
+.venv/
+
+# Flask/SQLite Specific
+pwd_manager.db  # NEVER commit your production database
+instance/       # Flask instance folder (often used for config/db)
+
+# Secret/Sensitive Files
+.env            # Environment variables file
+SECRET_KEY.txt  # If you store the Flask secret key separately
+*key* # General exclusion for files named 'key'
+*.key           # Exclusion for key files
