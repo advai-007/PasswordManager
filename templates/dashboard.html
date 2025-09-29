@@ -101,7 +101,7 @@
                   <form method="POST" action="/delete_password" class="d-inline">
                  <input type="hidden" name="password_id" value="{{ pwd.id }}">
                  <button type="submit" class="btn btn-sm btn-outline-danger" 
-                         onclick="return confirm('Are you sure you want to delete the password for {{ pwd.website_name }}?');">
+                         onclick="return confirm('Are you sure you want to delete the password for {{ pwd.website }}?');">
                      Delete
                  </button>
              </form>
