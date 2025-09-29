@@ -78,3 +78,26 @@ def add_password_entry(user_id,website,username,password):
         return True
     except sqlite3.Error:
         return False
+    
+def delete_password_entry(password_id, user_id):
+    """
+    Deletes a password entry from the database.
+    It checks both the password ID and the user ID for security.
+    """
+    try:
+        conn = sqlite3.connect(DB_NAME)
+        cursor = conn.cursor()
+        # CRITICAL: We include user_id in the WHERE clause 
+        # to ensure a user can only delete their own passwords.
+        cursor.execute("""
+            DELETE FROM passwords 
+            WHERE id = ? AND user_id = ?
+        """, (password_id, user_id))
+        conn.commit()
+        # Check if any row was actually deleted
+        rows_deleted = cursor.rowcount
+        conn.close()
+        return rows_deleted > 0
+    except sqlite3.Error as e:
+        print(f"Database error on deleting password: {e}")
+        return False
