@@ -3,7 +3,7 @@ from cryptography.fernet import Fernet
 
 
 
-KEY = b'w8YQQvDGwurFJbbsDuG_Zng-1uVrR7LhTQx2jJsRALg='  # Replace with Fernet.generate_key() output
+KEY = b'w8YQQvDGwurFJbbsDuG_Zng-1uVrR7LhTQx2jJsRALg='
 cipher = Fernet(KEY)
 
 def encrypt_password(plain_password: str) -> str:
