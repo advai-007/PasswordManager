@@ -1,9 +1,6 @@
-// static/js/script.js
 
-/**
- * Toggles the visibility of a password for a given password ID.
- * @param {number} passwordId - The unique ID of the password entry.
- */
+
+
 function togglePasswordVisibility(passwordId) {
     // 1. Get the password display cell using its unique ID
     const passwordCell = document.getElementById(`pwd-${passwordId}`);
@@ -29,3 +26,13 @@ function togglePasswordVisibility(passwordId) {
         button.textContent = '👁️'; // Change icon back to the eye
     }
 }
+
+async function copyPassword(id) {
+  const pwdCell = document.getElementById(`pwd-${id}`);
+
+    await navigator.clipboard.writeText(pwdCell.innerText);
+    alert("Password copied to clipboard!");
+  
+}
+
+
