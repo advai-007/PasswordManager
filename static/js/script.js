@@ -28,11 +28,11 @@ function togglePasswordVisibility(passwordId) {
 }
 
 async function copyPassword(id) {
-  const pwdCell = document.getElementById(`pwd-${id}`);
-
-    await navigator.clipboard.writeText(pwdCell.innerText);
+    const pwdCell = document.getElementById(`pwd-${id}`);
+    const actualPassword = pwdCell.getAttribute('data-actual-password');
+    await navigator.clipboard.writeText(actualPassword);
     alert("Password copied to clipboard!");
-  
 }
+
 
 
