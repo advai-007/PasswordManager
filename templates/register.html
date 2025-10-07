@@ -5,10 +5,20 @@
   <title>Register</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
 </head>
-<body class=" d-flex align-items-center " style="min-height: 100vh; background-color: #101922;" >
+<body class="d-flex flex-column" style="min-height: 100vh; background-color: #101922;">
 
-<div class="container mt-5">
-  <div class="row justify-content-center">
+  <!-- Navbar -->
+  <nav style="background-color: #0d141c; padding: 1rem;">
+    <div class="d-flex align-items-center">
+      <img src="{{ url_for('static', filename='images/padlock.png') }}" alt="Logo" width="50" height="50" class="me-2">
+      <span class="navbar-brand mb-0 h1 fs-2" style="font-weight: bold; color: rgb(217, 239, 255);">
+        Password Manager
+      </span>
+    </div>
+  </nav>
+
+  <!-- Register Form -->
+  <div class="container flex-grow-1 d-flex align-items-center justify-content-center mt-5">
     <div class="col-md-5">
       <div class="card shadow-sm">
         <div class="card-body">
@@ -43,7 +53,6 @@
       </div>
     </div>
   </div>
-</div>
 
 </body>
 </html>
