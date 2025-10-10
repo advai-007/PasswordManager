@@ -20,6 +20,7 @@ def login():
         user=check_user(username,password)
         if user:
             session["user_id"]=user[0]
+            session["key"] = user[1]
             return redirect('/dashboard')
         else:
             flash("Invalid username or password", "error")
@@ -50,6 +51,7 @@ def dashboard():
         return redirect('/login')      
     else:
         user_id=session["user_id"]
+        key=session['key']
 
         if request.method=='POST':
             website_name = request.form['website']
@@ -60,14 +62,15 @@ def dashboard():
             user_id, 
             website_name,  
             username, 
-            password
+            password,
+            key
         )
             if success:
                 flash(f"Password added successfully!", "success")
             else:
                 flash("An error occurred while adding the password.", "error")
             return redirect('/dashboard')
-        passwords_data=get_user_passwords(user_id)
+        passwords_data=get_user_passwords(user_id, key)
         return render_template('dashboard.html',passwords=passwords_data)
 
 
@@ -107,7 +110,7 @@ def delete_password():
     
 @app.route('/logout')
 def logout():
-    session.pop("user_id", None)
+    session.clear()
     flash("You have been logged out.", "info")
     return redirect('/login')
 
