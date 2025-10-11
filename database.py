@@ -5,7 +5,6 @@ from argon2 import PasswordHasher
 from crypto_utils import encrypt_password,decrypt_password
 from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 from cryptography.hazmat.primitives import hashes
-import os, base64
 from cryptography.hazmat.backends import default_backend
 DB_NAME="pwd_manager.db"
 ph=PasswordHasher()
